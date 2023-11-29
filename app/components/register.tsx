@@ -35,7 +35,7 @@ const Register = () => {
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Register</button>
                             <p className="text-center mt-1 mb-1">Or</p>
-                            <Link href="/login" className="btn btn-primary">Login</Link>
+                            <Link href="/login" className="btn btn-secondary">Login</Link>
                         </div>
                     </form>
                 </div>

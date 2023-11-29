@@ -30,7 +30,7 @@ const Login = () => {
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Login</button>
                                 <p className="text-center mt-1 mb-1">Or</p>
-                                <Link href="/" className="btn btn-primary">Register</Link>
+                                <Link href="/" className="btn btn-secondary">Register</Link>
                             </div>
                         </form>
                     </div>
