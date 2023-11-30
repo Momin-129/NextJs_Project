@@ -1,4 +1,5 @@
 import React from "react";
+import Session from "./user/session";
 
 const Navbar = () => {
   return (
@@ -7,7 +8,9 @@ const Navbar = () => {
       <div className="navbar-center">
         <a className="btn btn-ghost text-3xl">Cycle</a>
       </div>
-      <div className="navbar-end"></div>
+      <div className="navbar-end">
+        <Session />
+      </div>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from './navbar'
+import TanstackProvider from '@/providers/TanstackProvider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -17,8 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="dracula" style={{ height: "100%" }}>
       <body className={inter.className} style={{ height: "100%" }}>
-        <Navbar />
-        {children}
+        <TanstackProvider>
+          <Navbar />
+          {children}
+        </TanstackProvider>
       </body>
     </html>
   )

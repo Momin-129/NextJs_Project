@@ -6,21 +6,20 @@ import jwt from 'jsonwebtoken';
 
 export async function POST(request: NextRequest) {
     const body = await request.json();
-
     // to chekc if fields are empty or not
     const validation = schema.safeParse(body);
     if (!validation.success)
-        return NextResponse.json({ message: "Fields can't be empty." })
+        return NextResponse.json({ message: "Fields can't be empty." }, { status: 400 })
 
     // to chekc if user exists
     const user = await prisma.users.findUnique({ where: { email: body.email } });
     if (!user)
-        return NextResponse.json({ message: "User dosen't exists." })
+        return NextResponse.json({ message: "User dosen't exists." }, { status: 400 })
 
     // to check if user has entered correct password
     const check = await bcrypt.compare(body.password, user.password);
     if (!check)
-        return NextResponse.json({ message: "Inccorect Password." })
+        return NextResponse.json({ message: "Inccorect Password." }, { status: 400 })
 
     // create a json web token for user
     const key = process.env.JWT_KEY;
@@ -30,5 +29,5 @@ export async function POST(request: NextRequest) {
         id: user.id,
         name: user.name,
         token: token
-    })
+    }, { status: 200 })
 }
