@@ -1,9 +1,14 @@
 "use client";
 
 import { useSession } from "next-auth/react";
+import { useRouter } from 'next/navigation'
 
 const UserButtons = () => {
     const { data: session } = useSession();
+    const router = useRouter();
+    if (session?.user) router.push('/user')
+    else router.push("/");
+
     return (
         <div className="">
             {session?.user && (

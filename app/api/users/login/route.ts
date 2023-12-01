@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import schema from "./schema";
 import prisma from "@/prisma/client";
 import bcrypt from 'bcrypt';
+import { signJwtAccessToken } from "@/app/assets/jwt";
 
 export async function POST(request: NextRequest) {
 
@@ -24,9 +25,12 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ message: "Inccorect Password." }, { status: 400 })
 
 
+    const {password,...userWithoutPassword} = user;
+    const accessToken = signJwtAccessToken(userWithoutPassword);
+    const result = {
+        ...userWithoutPassword,
+        accessToken
+    }
 
-    return NextResponse.json({
-        id: user.id,
-        name: user.name,
-    }, { status: 200 })
+    return NextResponse.json(result, { status: 200 })
 }

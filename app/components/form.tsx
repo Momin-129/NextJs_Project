@@ -1,7 +1,7 @@
 'use client';
 
-import { Register } from '@/assets/interfaces';
-import register from '@/assets/register';
+import { Register } from '@/app/assets/interfaces';
+import register from '@/app/assets/register';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import Link from 'next/link'

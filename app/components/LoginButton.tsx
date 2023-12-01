@@ -4,7 +4,6 @@ import { signIn, signOut, useSession } from "next-auth/react";
 
 const LoginButton = () => {
     const { data: session } = useSession();
-
     return (
         <div className="ml-auto hidden sm:hidden md:hidden lg:flex gap-2">
             {session?.user ? (
