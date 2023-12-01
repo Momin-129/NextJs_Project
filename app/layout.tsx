@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from './navbar'
 import TanstackProvider from '@/providers/TanstackProvider'
+import Provider from './Provider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -19,8 +20,10 @@ export default function RootLayout({
     <html lang="en" data-theme="dracula" style={{ height: "100%" }}>
       <body className={inter.className} style={{ height: "100%" }}>
         <TanstackProvider>
-          <Navbar />
-          {children}
+          <Provider>
+            <Navbar />
+            {children}
+          </Provider>
         </TanstackProvider>
       </body>
     </html>

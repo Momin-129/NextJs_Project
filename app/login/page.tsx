@@ -1,13 +1,10 @@
 'use client';
 
-import login from '@/assets/login';
-import { useMutation } from '@tanstack/react-query';
 import Link from 'next/link'
 import React, { FormEvent, use, useState } from 'react'
-import { User } from '../../assets/interfaces'
-import axios from 'axios';
 import Toast from '../components/Toaster';
 import { useRouter } from 'next/navigation'
+import { signIn } from 'next-auth/react';
 
 const Login = () => {
     const router = useRouter()
@@ -20,27 +17,24 @@ const Login = () => {
     });
 
 
-    const { mutate, isPending } = useMutation({
-        mutationFn: (user: User) => login(user),
-        onSuccess: (data) => {
-            sessionStorage.setItem('user_id', data.id);
-            localStorage.setItem('name', data.name);
-            localStorage.setItem('token', data.token);
-            router.push('/user');
-        },
-        onError: (error) => {
+
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const result = await signIn('credentials', {
+            email: email,
+            password: password,
+            redirect: false,
+        })
+
+        if (result?.error) {
             setToastData({
                 isVisible: true,
                 type: 'error',
-                message: axios.isAxiosError(error) && error.response?.data?.message || 'Login failed.',
+                message: result.error
             });
+        } else {
+            router.push("/user")
         }
-    })
-
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const user = { email: email, password: password }
-        mutate(user)
     }
     const handleCloseToast = () => {
         setToastData({ ...toastData, isVisible: false });
@@ -71,7 +65,7 @@ const Login = () => {
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn btn-primary">Login{isPending && <span className="loading loading-spinner text-info"></span>}</button>
+                                <button className="btn btn-primary">Login</button>
                                 <p className="text-center mt-1 mb-1">Or</p>
                                 <Link href="/" className="btn btn-secondary">Register</Link>
                             </div>
