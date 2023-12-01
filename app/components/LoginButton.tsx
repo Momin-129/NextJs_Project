@@ -10,7 +10,7 @@ const LoginButton = () => {
             {session?.user ? (
                 <>
                     <p className="flex items-center">{session?.user.name}</p>
-                    <button className="btn btn-outline btn-secondary" onClick={() => signOut()}>SignOut</button>
+                    <button className="btn btn-outline btn-secondary" onClick={() => signOut({ redirect: true, callbackUrl: "/login" })}>SignOut</button>
                 </>
             ) : <button className="btn btn-outline btn-primary" onClick={() => signIn()}>Log In</button>
             }

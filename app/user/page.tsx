@@ -1,6 +1,6 @@
 const UserPage = () => {
     return (
-        <div>UserPage</div>
+        <div className="h-4/5 flex justify-center items-center">UserPage</div>
     )
 }
 
