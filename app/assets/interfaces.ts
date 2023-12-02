@@ -8,3 +8,12 @@ export interface Register{
     email:string,
     password:string
 }
+
+export interface cycleDate {
+  startDay: number;
+  startMonth: number;
+  startYear: number;
+  endDay: number;
+  endMonth: number;
+  endYear: number;
+}

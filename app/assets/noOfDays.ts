@@ -1,4 +1,4 @@
-function daysBetweenDates(
+export function daysBetweenDates(
   startDay: number,
   startMonth: number,
   startYear: number,
@@ -20,14 +20,4 @@ function daysBetweenDates(
   return Math.floor(daysDifference);
 }
 
-// Example usage
-const startDay = 1;
-const startMonth = 1;
-const startYear = 2022;
 
-const endDay = 31;
-const endMonth = 12;
-const endYear = 2022;
-
-const result = daysBetweenDates(startDay, startMonth, startYear, endDay, endMonth, endYear);
-console.log(result); // Output: 364

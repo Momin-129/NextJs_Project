@@ -2,12 +2,24 @@
 
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation'
+import { useEffect } from "react";
 
 const UserButtons = () => {
-    const { data: session } = useSession();
     const router = useRouter();
-    if (session?.user) router.push('/user')
-    else router.push("/");
+    const { data: session, status } = useSession();
+
+    useEffect(() => {
+
+        if (status == "loading") return;
+
+        if (session && session?.user) router.push('/user')
+        else router.push("/");
+    }, [status, session, router])
+
+
+    const handleAdd = () => {
+        router.push("/user/addOld");
+    }
 
     return (
         <div className="">
@@ -44,7 +56,7 @@ const UserButtons = () => {
                     </div>
                     <div className="hidden sm:hidden md:hidden lg:flex gap-2 ">
                         <button className="btn btn-outline btn-primary">Check Old Records</button>
-                        <button className="btn btn-outline btn-accent" onClick={() => router.push("/user/addOld")}>Add Old Records</button>
+                        <button className="btn btn-outline btn-accent" onClick={handleAdd}>Add Old Records</button>
                     </div>
                 </>
             )

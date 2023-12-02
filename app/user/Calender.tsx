@@ -9,18 +9,24 @@ const Calender = () => {
         <>
             <p className="text-3xl">New Cycle</p>
             <div className="flex gap-10">
-                <select className="select select-primary w-full max-w-xs">
-                    <option disabled selected>Date</option>
-                    {dates.map((item, index) => <option key={index} value={item}>{item}</option>)}
-                </select>
-                <select className="select select-primary w-full max-w-md">
-                    <option disabled selected>Month</option>
-                    {months.map((item, index) => <option key={index} value={item}>{item}</option>)}
-                </select>
-                <select className="select select-primary w-full max-w-xs">
-                    <option disabled selected>Year</option>
-                    {years.map((item, index) => <option key={index} value={item}>{item}</option>)}
-                </select>
+                <div className="flex-col">
+                    <label className="text-2xl">Date</label>
+                    <select className="select select-primary w-full">
+                        {dates.map((item, index) => <option key={index} value={item}>{item}</option>)}
+                    </select>
+                </div>
+                <div className="flex-col">
+                    <label className="text-2xl">Month</label>
+                    <select className="select select-primary w-full">
+                        {months.map((item, index) => <option key={index} value={item}>{item}</option>)}
+                    </select>
+                </div>
+                <div className="flex-col">
+                    <label className="text-2xl">Year</label>
+                    <select className="select select-primary w-full">
+                        {years.map((item, index) => <option key={index} value={item}>{item}</option>)}
+                    </select>
+                </div>
             </div>
             <button className="btn btn-active btn-secondary">Start Cycle</button>
         </>
