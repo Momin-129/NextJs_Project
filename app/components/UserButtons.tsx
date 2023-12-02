@@ -44,7 +44,7 @@ const UserButtons = () => {
                     </div>
                     <div className="hidden sm:hidden md:hidden lg:flex gap-2 ">
                         <button className="btn btn-outline btn-primary">Check Old Records</button>
-                        <button className="btn btn-outline btn-accent">Add Old Records</button>
+                        <button className="btn btn-outline btn-accent" onClick={() => router.push("/user/addOld")}>Add Old Records</button>
                     </div>
                 </>
             )
