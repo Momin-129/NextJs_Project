@@ -5,6 +5,9 @@ import { daysBetweenDates } from "@/app/assets/noOfDays";
 export async function POST(req:NextRequest){
     const body = await req.json();
     const lastrecord = await prisma.cycle.findFirst({
+      where: {
+         user_id: body.user_id, 
+     },
       orderBy: [
         {
           endYear: 'desc',
