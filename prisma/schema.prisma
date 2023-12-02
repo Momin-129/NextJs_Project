@@ -15,16 +15,18 @@ model Users {
   email     String   @unique
   name      String
   password  String
+  isCycle   Boolean  @default(false)
   createdAT DateTime @default(now())
 }
 
 model Cycle {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   user_id    String @db.ObjectId
-  startDate  Int
+  startDay   Int
   startMonth Int
   startYear  Int
-  endDate    Int
+  endDay     Int
   endMonth   Int
   endYear    Int
+  afterDays  Int
 }
