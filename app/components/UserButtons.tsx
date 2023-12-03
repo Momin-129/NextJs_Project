@@ -23,7 +23,7 @@ const UserButtons = () => {
     }
 
     const handleCheck = () => {
-        router.push(`/user/checkOld?id=${session?.user.id}`);
+        router.push(`/user/checkOld`);
     }
 
     return (

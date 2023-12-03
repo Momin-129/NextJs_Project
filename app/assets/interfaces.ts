@@ -17,3 +17,13 @@ export interface cycleDate {
   endMonth: number;
   endYear: number;
 }
+
+export interface cycleDate {
+    startDay: number,
+    startMonth: number,
+    startYear: number,
+    endDay: number,
+    endMonth: number,
+    endYear: number,
+    afterDays: number
+}

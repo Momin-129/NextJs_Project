@@ -1,10 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/prisma/client";
+import { getSession } from "next-auth/react";
+import { NextApiRequest } from "next";
 
 
 
-export async function GET(req:NextRequest,params:{params:{id:string}}){
-    const id = params.params.id;
+export async function GET(req:NextApiRequest){
+    const session = await getSession({req});
+    const id = session?.user.id;
     const record= await prisma.cycle.findMany({
       where: {
          user_id: id, 
