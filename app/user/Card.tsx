@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 
 const Card = () => {
+
     const { data: session, status } = useSession();
     const [isEnabled, setEnabled] = useState(false);
     const { data: cycleDate, isLoading, refetch } = useQuery({

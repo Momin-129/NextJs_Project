@@ -1,6 +1,7 @@
 "use client";
 
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 import { useRouter } from 'next/navigation'
 import { useEffect } from "react";
 
@@ -13,12 +14,16 @@ const UserButtons = () => {
         if (status == "loading") return;
 
         if (session && session?.user) router.push('/user')
-        else router.push("/");
+        else router.push("/login");
     }, [status, session, router])
 
 
     const handleAdd = () => {
-        router.push("/user/addOld");
+        router.push(`/user/addOld`);
+    }
+
+    const handleCheck = () => {
+        router.push(`/user/checkOld?id=${session?.user.id}`);
     }
 
     return (
@@ -43,19 +48,22 @@ const UserButtons = () => {
                             </svg>
                         </div>
                         <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 bg-secondary text-neutral font-bold rounded-box w-52">
-                            <li className="cursor-pointer">
-                                <a>Check Old Records</a>
+                            <li className="cursor-pointer" >
+                                <Link href="/">Home</Link>
+                            </li>
+                            <li className="cursor-pointer" >
+                                <Link href="/user/checkOld">Check Old Records</Link>
                             </li>
                             <li className="cursor-pointer">
-                                <a>Add Old Records</a>
+                                <Link href="/user/addOld">Add Old Records</Link>
                             </li>
-                            <li className="cursor-pointer">
-                                <a>Sign Out</a>
+                            <li className="cursor-pointer" onClick={() => signOut({ redirect: true, callbackUrl: "/login" })}>
+                                <a href="#">Sign Out</a>
                             </li>
                         </ul>
                     </div>
                     <div className="hidden sm:hidden md:hidden lg:flex gap-2 ">
-                        <button className="btn btn-outline btn-primary">Check Old Records</button>
+                        <button className="btn btn-outline btn-primary" onClick={handleCheck}>Check Old Records</button>
                         <button className="btn btn-outline btn-accent" onClick={handleAdd}>Add Old Records</button>
                     </div>
                 </>
