@@ -60,30 +60,31 @@ const OldRecords = ({ data }: { data: cycleDate[] }) => {
                 </div>
             </div>
             {
-                cycleRecord && cycleRecord.map((item, index) => < div className="card w-max bg-primary h-min text-primary-content" >
-                    <div key={index} className="card-body">
-                        <table className="table">
-                            <thead className="text-xl text-black">
-                                <tr>
-                                    <th>Start Date</th>
-                                    <td>
-                                        {item.startDay} {monthNumberToNameMap[item.startMonth]} {item.startYear}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>End Date</th>
-                                    <td>
-                                        {item.endDay} {monthNumberToNameMap[item.endMonth]} {item.endYear}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Happened After</th>
-                                    <td>{item.afterDays} days</td>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div >)
+                cycleRecord && cycleRecord.map((item, index) =>
+                    < div key={index} className="card w-max bg-primary h-min text-primary-content" >
+                        <div className="card-body">
+                            <table className="table">
+                                <thead className="text-xl text-black">
+                                    <tr>
+                                        <th>Start Date</th>
+                                        <td>
+                                            {item.startDay} {monthNumberToNameMap[item.startMonth]} {item.startYear}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>End Date</th>
+                                        <td>
+                                            {item.endDay} {monthNumberToNameMap[item.endMonth]} {item.endYear}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Happened After</th>
+                                        <td>{item.afterDays} days</td>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div >)
             }
         </div>
     )
