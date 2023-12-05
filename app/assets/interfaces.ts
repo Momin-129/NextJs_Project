@@ -18,7 +18,7 @@ export interface cycleDate {
   endYear: number;
 }
 
-export interface cycleDate {
+export interface cycleDates {
     startDay: number,
     startMonth: number,
     startYear: number,

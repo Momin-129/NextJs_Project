@@ -1,6 +1,6 @@
 'use client';
 
-import { cycleDate } from "@/app/assets/interfaces";
+import { cycleDates } from "@/app/assets/interfaces";
 import { useState } from "react";
 import { number } from "zod";
 
@@ -11,7 +11,7 @@ const monthNumberToNameMap: Record<number, string> = {
 
 
 
-const OldRecords = ({ data }: { data: cycleDate[] }) => {
+const OldRecords = ({ data }: { data: cycleDates[] }) => {
     const [cycleRecord, setCycleRecord] = useState(data)
     const [sortBy, setSortBy] = useState("");
     const [groupBy, setGroupBy] = useState<number[]>([]);
