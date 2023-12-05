@@ -12,10 +12,10 @@ const monthNumberToNameMap: Record<number, string> = {
 
 
 const OldRecords = ({ data }: { data: cycleDates[] }) => {
-    const [cycleRecord, setCycleRecord] = useState(data)
-    const [sortBy, setSortBy] = useState("");
+    const [cycleRecord, setCycleRecord] = useState<cycleDates[]>(data)
+    const [sortBy, setSortBy] = useState<string>("");
     const [groupBy, setGroupBy] = useState<number[]>([]);
-    const [groupValue, setGroupValue] = useState<string>()
+    const [groupValue, setGroupValue] = useState<string>("")
 
     const sortByStartMonth = (month: number) => {
         const sortedData = data.filter((item) => item.startMonth === month || item.endMonth === month);
@@ -56,7 +56,7 @@ const OldRecords = ({ data }: { data: cycleDates[] }) => {
                     </select>
                 </div>
                 <div className="flex-col">
-                    <button className="btn btn-outline btn-secondary w-full" disabled={sortBy.length == 0 || !groupBy.length} onClick={handleSort}>Sort</button>
+                    <button className="btn btn-outline btn-secondary w-full" disabled={sortBy.length == 0 || groupValue.length == 0} onClick={handleSort}>Sort</button>
                 </div>
             </div>
             {
