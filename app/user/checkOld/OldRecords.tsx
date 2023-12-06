@@ -61,24 +61,24 @@ const OldRecords = ({ data }: { data: cycleDates[] }) => {
             </div>
             {
                 cycleRecord && cycleRecord.map((item, index) =>
-                    < div key={index} className="card w-max bg-primary h-min text-primary-content" >
-                        <div className="card-body">
+                    < div key={index} className="card sm:w-11/12 md:w-2/4 lg:w-1/5 h-max rounded-2xl bg-primary text-primary-content flex justify-center items-center p-10" >
+                        <div>
                             <table className="table">
-                                <thead className="text-xl text-black">
+                                <thead className="sm:text-4xl md:text-xl lg:text-xl text-black">
                                     <tr>
-                                        <th>Start Date</th>
+                                        <th>Start</th>
                                         <td>
                                             {item.startDay} {monthNumberToNameMap[item.startMonth]} {item.startYear}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>End Date</th>
+                                        <th>End</th>
                                         <td>
                                             {item.endDay} {monthNumberToNameMap[item.endMonth]} {item.endYear}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>Happened After</th>
+                                        <th>After</th>
                                         <td>{item.afterDays} days</td>
                                     </tr>
                                 </thead>

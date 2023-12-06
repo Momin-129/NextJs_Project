@@ -17,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" data-theme="dracula" style={{ height: "100%" }}>
-      <body className={inter.className} style={{ height: "100%" }}>
+    <html lang="en" data-theme="dracula" style={{ height: "100%", width: "100%" }}>
+      <body className={inter.className} style={{ height: "100%", width: "100%" }}>
         <TanstackProvider>
           <Provider>
             <Navbar />
