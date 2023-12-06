@@ -22,11 +22,11 @@ model Users {
 model Cycle {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   user_id    String @db.ObjectId
-  startDay   Int
-  startMonth Int
-  startYear  Int
-  endDay     Int
-  endMonth   Int
-  endYear    Int
-  afterDays  Int
+  startDay   Int    @default(0)
+  startMonth Int    @default(0)
+  startYear  Int    @default(0)
+  endDay     Int    @default(0)
+  endMonth   Int    @default(0)
+  endYear    Int    @default(0)
+  afterDays  Int    @default(0)
 }

@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 const Card = () => {
 
     const { data: session, status } = useSession();
+    const [prevSession, setPrevSession] = useState(session);
     const [isEnabled, setEnabled] = useState(false);
     const { data: cycleDate, isLoading, refetch } = useQuery({
         queryKey: ['getlast'],
@@ -19,8 +20,13 @@ const Card = () => {
     useEffect(() => {
         if (status == "loading") return;
 
+        if (prevSession != session) {
+            refetch();
+            setPrevSession(session);
+        }
+
         setEnabled(true);
-    }, [status])
+    }, [status, session])
 
     return (
         <div className="card min-w-max bg-primary h-min text-primary-content">
