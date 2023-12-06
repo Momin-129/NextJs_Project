@@ -13,6 +13,7 @@ interface Props {
 
 const Calender = ({ IsCycle, user_id, cycle_id }: Props) => {
     const { dates, months, years } = createDateArrays();
+    const [msg, setMsg] = useState<string>("");
     const [isCycle, setIsCycle] = useState<boolean>(IsCycle)
     const [day, setDay] = useState<number>(0);
     const [month, setMonth] = useState<number>(0);
@@ -21,6 +22,12 @@ const Calender = ({ IsCycle, user_id, cycle_id }: Props) => {
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        if (isCycle && cycle_id == "") {
+            setMsg("It just started wait a while.");
+            return;
+        }
+
         const formData = new FormData(e.currentTarget);
         const data = {
             day: parseInt(formData.get('day') as string, 10),
@@ -73,6 +80,7 @@ const Calender = ({ IsCycle, user_id, cycle_id }: Props) => {
                 </div>
                 {!isCycle && <button type="submit" className="btn btn-active btn-secondary" disabled={day == 0 || month == 0 || year == 0}>Start Cycle</button>}
                 {isCycle && <button type="submit" className="btn btn-active btn-secondary" disabled={day == 0 || month == 0 || year == 0}>End Cycle</button>}
+                {msg.length > 0 && <p className="text-secondary text-xl">{msg}</p>}
             </form>
         </>
     )
