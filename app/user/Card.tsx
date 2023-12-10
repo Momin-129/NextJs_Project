@@ -26,7 +26,7 @@ const Card = () => {
         }
 
         setEnabled(true);
-    }, [status, session])
+    }, [status, session, prevSession, refetch])
 
     return (
         <div className="card sm:w-11/12 md:w-2/4 lg:w-1/5 h-max rounded-2xl bg-primary text-primary-content flex justify-center items-center p-10">
