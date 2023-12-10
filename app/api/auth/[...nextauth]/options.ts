@@ -12,7 +12,7 @@ export const authOptions:NextAuthOptions = {
       },
       async authorize(credentials, req) {
         try {
-          const res = await axios.post("http://localhost:3000/api/users/login", {
+          const res = await axios.post(`${process.env.NEXTAUTH_URL}/api/users/login`, {
             email: credentials?.email,
             password: credentials?.password
           });

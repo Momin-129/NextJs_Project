@@ -5,7 +5,7 @@ import axios from "axios";
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 
 async function getData(id: string) {
-    const response = await axios.get(`http://localhost:3000/api/users/checkold/${id}`);
+    const response = await axios.get(`${process.env.NEXTAUTH_URL}/api/users/checkold/${id}`);
     return response.data;
 }
 

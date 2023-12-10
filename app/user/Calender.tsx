@@ -38,7 +38,7 @@ const Calender = ({ IsCycle, user_id, cycle_id }: Props) => {
             cycle_id: cycle_id
         }
         try {
-            const res = await axios.post("http://localhost:3000/api/users/addNew", data);
+            const res = await axios.post(`${process.env.NEXTAUTH_URL}/api/users/addNew`, data);
             update({
                 ...session,
                 user: {
