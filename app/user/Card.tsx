@@ -8,9 +8,9 @@ const Card = (lastRecord: { startDate: string, endDate: string, afterDays: numbe
                 {!lastRecord ? <span className="loading loading-spinner text-info"></span> :
                     <table className="table">
                         <thead className="sm:text-4xl md:text-xl lg:text-xl text-black">
+                            <tr><th>After</th><td>{lastRecord && lastRecord.afterDays} days</td></tr>
                             <tr><th>Start</th><td>{lastRecord && lastRecord.startDate}</td></tr>
                             <tr><th>End</th><td>{lastRecord && lastRecord.endDate}</td></tr>
-                            <tr><th>After</th><td>{lastRecord && lastRecord.afterDays} days</td></tr>
                         </thead>
                     </table>}
             </div>

@@ -15,7 +15,7 @@ const OldRecords = ({ data }: { data: cycleDates[] }) => {
     const [cycleRecord, setCycleRecord] = useState<cycleDates[]>(data)
     const [sortBy, setSortBy] = useState<string>("");
     const [groupBy, setGroupBy] = useState<number[]>([]);
-    const [groupValue, setGroupValue] = useState<string>("")
+    const [groupValue, setGroupValue] = useState<string>("get only")
 
     const sortByStartMonth = (month: number) => {
         const sortedData = data.filter((item) => item.startMonth === month || item.endMonth === month);
@@ -40,8 +40,9 @@ const OldRecords = ({ data }: { data: cycleDates[] }) => {
                 <div className="flex-col">
                     <select className="select select-primary w-full" defaultValue="sort by" onChange={
                         (e) => {
-                            setSortBy(e.target.value)
-                            e.target.value == "month" ? setGroupBy(distinctStartMonths) : setGroupBy(distinctStartYears)
+                            setSortBy(e.target.value);
+                            e.target.value == "month" ? setGroupBy(distinctStartMonths) : setGroupBy(distinctStartYears);
+                            setGroupValue("get only");
                         }
                     }>
                         <option value="sort by" disabled>Sort By</option>
@@ -50,13 +51,13 @@ const OldRecords = ({ data }: { data: cycleDates[] }) => {
                     </select>
                 </div>
                 <div className="flex-col">
-                    <select className="select select-primary w-full" defaultValue="get only" disabled={sortBy.length == 0} onChange={(e) => setGroupValue(e.target.value)}>
+                    <select className="select select-primary w-full" value={groupValue} disabled={sortBy.length == 0} onChange={(e) => setGroupValue(e.target.value)}>
                         <option value="get only" disabled>Get Only</option>
                         {groupBy.map((item, index) => <option key={index} value={item}>{item}</option>)}
                     </select>
                 </div>
                 <div className="flex-col">
-                    <button className="btn btn-outline btn-secondary w-full" disabled={sortBy.length == 0 || groupValue.length == 0} onClick={handleSort}>Sort</button>
+                    <button className="btn btn-outline btn-secondary w-full" disabled={sortBy.length == 0 || groupValue! == "get only"} onClick={handleSort}>Sort</button>
                 </div>
             </div>
             {
@@ -65,6 +66,10 @@ const OldRecords = ({ data }: { data: cycleDates[] }) => {
                         <div>
                             <table className="table">
                                 <thead className="sm:text-4xl md:text-xl lg:text-xl text-black">
+                                    <tr>
+                                        <th>After</th>
+                                        <td>{item.afterDays} days</td>
+                                    </tr>
                                     <tr>
                                         <th>Start</th>
                                         <td>
@@ -77,10 +82,7 @@ const OldRecords = ({ data }: { data: cycleDates[] }) => {
                                             {item.endDay} {monthNumberToNameMap[item.endMonth]} {item.endYear}
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <th>After</th>
-                                        <td>{item.afterDays} days</td>
-                                    </tr>
+
                                 </thead>
                             </table>
                         </div>
