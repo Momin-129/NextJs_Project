@@ -10,7 +10,7 @@ export function createDateArrays(): { dates: number[], months: number[], years: 
 
   const dates = generateNumberArray(1, 31);
   const months = generateNumberArray(1, 12);
-  const years = generateNumberArray(currentYear - 20, currentYear); // Adjust the range as needed
+  const years = generateNumberArray(currentYear - 1, currentYear); // Adjust the range as needed
 
   return { dates, months, years };
 }
