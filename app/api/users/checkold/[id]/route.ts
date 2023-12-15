@@ -9,6 +9,9 @@ export async function GET(req:NextRequest,{params}:{params:{id:string}}){
     const record= await prisma.cycle.findMany({
       where: {
          user_id: id, 
+         endDay:{
+            gt:0
+         }
      },
      select:{
         startDay:true,
