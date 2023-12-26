@@ -47,6 +47,9 @@ const Calender = ({ IsCycle, user_id, cycle_id }: Props) => {
                 }
             });
             setIsCycle(!session?.user.isCycle);
+            if (session?.user.isCycle) {
+                await axios.get(`api/users/schedule${session?.user.id}`);
+            }
             setDay(0);
             setMonth(0);
             setYear(0);
