@@ -27,12 +27,8 @@ export const  ScheduleMail = (day:number,month:number,year:number,email:string)=
     });
 
 
-    const today = new Date();
-    const executionTime = new Date(year, month-1, day, 19, 18, 0);
-    console.log("Time",executionTime);
+    const executionTime = new Date(year, month-1, day, 10, 0 , 0);
     schedule.scheduleJob(executionTime, () => {
-    console.log('---------------------');
-    console.log('Running Cron Process');
     // Delivering mail with sendMail method
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) console.log(error);

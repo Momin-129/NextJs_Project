@@ -26,6 +26,9 @@ const getMonthNumber = (monthName: string): number | undefined => ({
 
 
 export async function GET(req:NextRequest,{params}:{params:{id:string}}){
+
+  try {
+    
     const id = params.id;
     const record:cycleDates[]= await prisma.cycle.findMany({
       where: {
@@ -57,6 +60,9 @@ export async function GET(req:NextRequest,{params}:{params:{id:string}}){
         }
     else 
         return NextResponse.json({message:"Invalid user id"});
+  } catch (error) {
+    console.log(error)
+  }
 
 
 }
