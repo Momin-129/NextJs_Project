@@ -55,7 +55,7 @@ export async function GET(req:NextRequest,{params}:{params:{id:string}}){
          const date = response.data['predicted_start_date'].split(" ")
          const [day,month,year]= date;
          const user_email = await prisma.users.findFirst({where:{id:id},select:{email:true}});
-         ScheduleMail(parseInt(day),getMonthNumber(month) as number,parseInt(year),"momin.rather@gmail.com");
+         ScheduleMail(parseInt(day),getMonthNumber(month) as number,parseInt(year),user_email?.email as string);
          return NextResponse.json({day,month:getMonthNumber(month),year});
         }
     else 

@@ -1,4 +1,3 @@
-import * as schedule from "node-schedule";
 import * as nodemailer from "nodemailer";
 
 
@@ -10,8 +9,8 @@ export const  ScheduleMail = (day:number,month:number,year:number,email:string)=
     from: process.env.EMAIL,
     to: email,
     subject: 'Cycle Might Start',
-    text: 'Some content to send',
-    html: '<div><h2>Cycle</h2><br><h3>Your cycle might start today if so do start the cycle or atleast tell your bodyfriend to start it &#128521;.</h3></div>'
+    text: 'USMIESKA',
+    html: `<div><h2>Cycle</h2><br><h3>Your cycle might start on ${day}/${month}/${year}, so do remember to start the cycle or  tell your bodyfriend to start it &#128521;.</h3></div>`
     };
 
     // Mail transport configuration
@@ -27,14 +26,12 @@ export const  ScheduleMail = (day:number,month:number,year:number,email:string)=
     });
 
 
-    const executionTime = new Date(year, month-1, day, 10, 0 , 0);
-    schedule.scheduleJob(executionTime, () => {
-    // Delivering mail with sendMail method
+    
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) console.log(error);
         else console.log('Email sent: ' + info.response);
     });
-    });
+  
 }
 
 
